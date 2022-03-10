@@ -69,7 +69,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
   position: relative;
-  height: 60vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   /* background-color: rgb(161, 228, 224); */
@@ -91,7 +91,7 @@
   color: white;
 }
 #signupbtn {
-  bottom: 5%;
+  bottom: 2%;
 }
 .guestuserbtn {
   background-color: rgb(19, 67, 121);

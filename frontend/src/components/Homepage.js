@@ -8,12 +8,6 @@ const Homepage = () => {
 
   const [newUser, setNewuser] = useState(true)
 
-  
-  
-
-  
-    
-
   return (
     <div className='homepage_main'>
       <div className='app_name'>
