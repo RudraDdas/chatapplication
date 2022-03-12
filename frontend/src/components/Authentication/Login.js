@@ -24,11 +24,12 @@ function Login() {
   const Loginhandlesubmit = (e) => {
     if (LoginData.Email==="") {
     setiSEmail("*required")
+    } else {
+      setiSEmail("")
     }
     if (LoginData.password === "") {
       setIspassword("*required")
     } else {
-      setiSEmail("")
       setIspassword("")
     }
     e.preventDefault()

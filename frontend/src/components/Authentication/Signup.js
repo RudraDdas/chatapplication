@@ -3,6 +3,19 @@ import React, { useState } from 'react'
 function Signup() {
   const [pswd_visibility, setpswd_visibility] = useState(false)
   const [cPswd_visibility, setcpswd_visibility] = useState(false)
+  const [signupData, setSignupData] = useState({
+    Name: "",
+    Email: "",
+    Password: "",
+    Cpassword: "",
+    Image:""
+  })
+
+  const [NameErr, setNameErr] = useState("")
+  const [EmailErr, setEmailErr] = useState("")
+  const [PswdErr, setPswdErr] = useState("")
+  const [CpswdErr, setCpswdErr] = useState("")
+
 
 
    const togglehideshow_1 = (e) => {
@@ -14,41 +27,67 @@ function Signup() {
      e.preventDefault()
      setcpswd_visibility(!cPswd_visibility)
    
- }
+  }
+  const HandleChange = (e) => {
+    setSignupData({ ...signupData, [e.target.name]: e.target.value })
+  }
+  const HandleSignupData = (e) => {
+    if (signupData.Name === "") {
+      setNameErr("*required")
+    } else {
+      setNameErr("")
+    }
+    if (signupData.Email === "") {
+      setEmailErr("*required")
+    } else {
+      setEmailErr("")
+    }
+    if (signupData.Password === "") {
+      setPswdErr("*required")
+    } else {
+      setPswdErr("")
+    }
+    if (signupData.Cpassword === "") {
+      setCpswdErr("*required")
+    } else {
+      setCpswdErr("")
+    }
+    e.preventDefault()
+  }
   return (
     <form>
-      <span className='passowrd_container'> <label  className="labels" >Name</label><span className="unsubmitmsg">*required</span>
+      <span className='passowrd_container'> <label className="labels" >Name</label><span className="unsubmitmsg">{ NameErr}</span>
         <br/>
-        <input className='inputfields' placeholder="abac das" type="text" name="Name" />
+        <input onChange={HandleChange} value={signupData.Name} className='inputfields' placeholder="abac das" type="text" name="Name" />
       </span>
       <br />
-      <span className='passowrd_container'><label  className="labels" >Email</label><span className="unsubmitmsg">*required</span>
+      <span className='passowrd_container'><label className="labels" >Email</label><span className="unsubmitmsg">{ EmailErr}</span>
         <br/>
-        <input className='inputfields' placeholder="abc@gmail.com" type="text" name="mail_id" />
+        <input onChange={HandleChange} value={signupData.Email }className='inputfields' placeholder="abc@gmail.com" type="Email" name="Email" />
       </span>
       <br />
       <span className='passowrd_container'>
-        <label  className="labels" >Password</label><span className="unsubmitmsg">*required</span>
+        <label className="labels" >Password</label><span className="unsubmitmsg">{ PswdErr}</span>
         <br/>
-        <input className='inputfields' type={ pswd_visibility ? "text":"password"} id="password_field" placeholder="abc@123" name="password" />
+        <input onChange={HandleChange} className='inputfields' type={ pswd_visibility ? "text":"password"} id="password_field" placeholder="abc@123" name="Password" />
         <button className='hideShow_btn'  onClick={togglehideshow_1} > { pswd_visibility ? "Hide" : "Show"} </button>
 
       </span>
       <br />
       <span className='passowrd_container'>
-        <label  className="labels" >Conform Password</label><span className="unsubmitmsg">*required</span>
+        <label className="labels" >Conform Password</label><span className="unsubmitmsg">{CpswdErr}</span>
         <br/>
-        <input className='inputfields' type={ cPswd_visibility ? "text":"password"} id="password_field2" placeholder="abc@123" name="cpassword" />
+        <input onChange={HandleChange} className='inputfields' type={ cPswd_visibility ? "text":"password"} id="password_field2" placeholder="abc@123" name="Cpassword" />
         <button className='hideShow_btn'  onClick={togglehideshow_2} > { cPswd_visibility ? "Hide" : "Show"} </button>
         
       </span>
       <br/>
       <span className='passowrd_container'>
-        <label className="labels" >Display picture</label><span className="unsubmitmsg">*required</span>
+        <label className="labels" >Display picture</label>
         <br />
-        <input  type="file" className='inputfields'  id="password_field" placeholder="abc@123" name="cpassword" />
+        <input onChange={HandleChange}  type="file" className='inputfields'  id="password_field" placeholder="abc@123" name="Image" />
       </span>
-      <button className='loginbtn' id="signupbtn">Signup</button>
+      <button className='loginbtn' id="signupbtn" onClick={HandleSignupData}>Signup</button>
       </form>
   )
 }
