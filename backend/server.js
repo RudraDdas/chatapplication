@@ -1,12 +1,17 @@
 
 const express = require("express")
+const dotenv = require('dotenv')
+require("./Db/conn")
+dotenv.config({path:"./config.env"})
 const app = express()
 const chats = require("./Data/data")
-// var cors = require('cors')
+const PORT = process.env.PORT || 8000
 
-// app.use(cors())
-// app.use(express.json())
-    
+
+    // console.log(process.env.PORT)
+// console.log(process.env.DB)
+
+app.use(express.json())  // to accept the json data from the server
 app.get("/", (req, res) => {
     res.send("api running")
 })
@@ -23,6 +28,6 @@ app.get("/api/chat/:id", (req, res) => {
 })
 
 
-app.listen(8000, () => {
-    console.log("listening to the port 8000")
+app.listen(PORT, () => {
+    console.log(`listening to the port  ${PORT}`)
 })
