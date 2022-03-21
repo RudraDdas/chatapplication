@@ -2,7 +2,7 @@
 const userModel = require("../models/userModel")
 const generateToken = require("../Db/generateToken")
 
-
+// resister user api
 const resisterUser = async (req,res) => {
     try {
          const { name, email, password, pic } = req.body
@@ -23,10 +23,13 @@ const resisterUser = async (req,res) => {
                 Email: email,
                 password: password,
                 image: pic
-             })
+            })
+                await newUser.save()
+
                 res.status(201).send({
                     Name: newUser.Name,
                     Email: newUser.Email,
+                    password:newUser.password,
                     _id: newUser._id,
                     image: newUser.image,
                     token:generateToken(newUser._id)
@@ -44,6 +47,8 @@ const resisterUser = async (req,res) => {
 
 
 }
+
+//login api
 
 const authUser = (req, res) => {
 

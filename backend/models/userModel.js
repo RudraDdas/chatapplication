@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require("bcryptjs")
 
 
 const userSchema = new mongoose.Schema({
@@ -28,6 +29,17 @@ const userSchema = new mongoose.Schema({
     }
 )
 
+// userSchema.pre must always written before usermodel created.
+
+userSchema.pre("save", async function (next) {
+    // console.log(this.password)
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password , 12)
+    }
+    next()
+})
+
 const userModel = new mongoose.model("User", userSchema)
+
 
 module.exports = userModel
