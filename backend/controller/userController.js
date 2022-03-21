@@ -11,7 +11,7 @@ const resisterUser = async (req,res) => {
             res.status(400).send("please enter all the fields")
             throw new Error("please enter all the fields")
         }
-console.log(req.body.email)
+           console.log(req.body.email)
         const existUser = await userModel.findOne({ Email: email })
         console.log(existUser)
             if (existUser) {
@@ -45,4 +45,21 @@ console.log(req.body.email)
 
 }
 
-module.exports = resisterUser
+const authUser = (req, res) => {
+
+    if (!req.body.email || !req.body.password) {
+        res.status(400).send({ message: "must enter all the fields" })
+        // throw new Error("must enter all the fields")
+    }
+   
+    userModel.findOne({ Email: req.body.email })
+        .then((user) => {
+            if (user) {
+            res.status(200).send(user)
+        }
+        })
+    .catch(e=> console.log(e))
+    
+}
+
+module.exports = { resisterUser , authUser} 
