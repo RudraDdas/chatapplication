@@ -6,13 +6,11 @@ dotenv.config({path:"./config.env"})
 const app = express()
 const chats = require("./Data/data")
 const PORT = process.env.PORT || 8000
-
 const userRouter = require("./routes/userRouter")
 
 
     // console.log(process.env.PORT)
 // console.log(process.env.DB)
-
 
 app.use(express.json())// to accept the json data from the server
 

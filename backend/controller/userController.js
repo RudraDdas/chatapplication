@@ -18,29 +18,27 @@ console.log(req.body.email)
                 res.status(400).send("email id already resistered")
                 throw new Error("email id already resistered")
             } else { 
-            const newUser = await userModel.create({
+            const newUser= await userModel.create({
                 Name: name,
                 Email: email,
                 password: password,
                 image: pic
+             })
+                res.status(201).send({
+                    Name: newUser.Name,
+                    Email: newUser.Email,
+                    _id: newUser._id,
+                    image: newUser.image,
+                    token:generateToken(newUser._id)
             })
                 
+            
         }
-        if (newUser) {
-            res.status(201).json({
-                Name: newUser.Name,
-                Email: newUser.Email,
-                _id:newUser._id,
-                image: newUser.image,
-                token:generateToken(newUser._id)
-            })
-        } else {
-            throw new Error("user can not be created")
-        }
+        
     
         
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
    
 
