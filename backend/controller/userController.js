@@ -24,7 +24,7 @@ const resisterUser = async (req,res) => {
                 password: password,
                 image: pic
             })
-                await newUser.save()
+                // await newUser.save()
 
                 res.status(201).send({
                     Name: newUser.Name,
