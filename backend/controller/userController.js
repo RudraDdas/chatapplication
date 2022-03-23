@@ -1,6 +1,7 @@
 
 const userModel = require("../models/userModel")
 const generateToken = require("../Db/generateToken")
+const bcrypt = require("bcryptjs/dist/bcrypt")
 
 // resister user api
 const resisterUser = async (req,res) => {
@@ -9,14 +10,14 @@ const resisterUser = async (req,res) => {
           console.log("hitting")    
         if (!name || !email || !password) {
             res.status(400).send("please enter all the fields")
-            throw new Error("please enter all the fields")
+            // throw new Error("please enter all the fields")
         }
-           console.log(req.body.email)
+        //    console.log(req.body.email)
         const existUser = await userModel.findOne({ Email: email })
-        console.log(existUser)
+        // console.log(existUser)
             if (existUser) {
                 res.status(400).send("email id already resistered")
-                throw new Error("email id already resistered")
+                // throw new Error("email id already resistered")
             } else { 
             const newUser= await userModel.create({
                 Name: name,
@@ -24,7 +25,6 @@ const resisterUser = async (req,res) => {
                 password: password,
                 image: pic
             })
-                // await newUser.save()
 
                 res.status(201).send({
                     Name: newUser.Name,
@@ -59,10 +59,28 @@ const authUser = (req, res) => {
    
     userModel.findOne({ Email: req.body.email })
         .then((user) => {
-            if (user) {
-            res.status(200).send(user)
-        }
+            if (!user) {
+            res.status(400).send({message:"email id not found"})
+            } else {
+                bcrypt.compare(req.body.password, user.password, (error, match) => {
+                    if (error) {
+                        res.status(500).send({message:'error'})
+                    } else if (match) {
+                        res.status(200).send({ 
+                     Name: user.Name,
+                     Email: user.Email,
+                     password:user.password,
+                     _id: user._id,
+                    image: user.image,
+                    token:generateToken(user._id)
+                        })
+                    } else {
+                        res.status(500).send("credentials wrong")
+                    }
+                } )
+            }
         })
+      
     .catch(e=> console.log(e))
     
 }
