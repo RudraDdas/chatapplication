@@ -67,12 +67,12 @@ const authUser = (req, res) => {
                         res.status(500).send({message:'error'})
                     } else if (match) {
                         res.status(200).send({ 
-                     Name: user.Name,
-                     Email: user.Email,
-                     password:user.password,
-                     _id: user._id,
-                    image: user.image,
-                    token:generateToken(user._id)
+                              Name: user.Name,
+                              Email: user.Email,
+                              password:user.password,
+                              _id: user._id,
+                              image: user.image,
+                              token:generateToken(user._id)
                         })
                     } else {
                         res.status(500).send("credentials wrong")

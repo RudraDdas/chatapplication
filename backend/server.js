@@ -7,6 +7,7 @@ const app = express()
 const chats = require("./Data/data")
 const PORT = process.env.PORT || 8000
 const userRouter = require("./routes/userRouter")
+const {errorhandler , urlnotFound} = require("./middleware/errorHandle")
 
 
     // console.log(process.env.PORT)
@@ -15,6 +16,8 @@ const userRouter = require("./routes/userRouter")
 app.use(express.json())// to accept the json data from the server
 
 app.use(userRouter)
+app.use(errorhandler)
+app.use(urlnotFound)
 
 
 
