@@ -114,6 +114,7 @@
   border-radius: 4px;
   background-color: aliceblue;
   padding: 0 5px;
+  border: 1px solid gray;
 }
 .inputfields {
   border-radius: 4px;
