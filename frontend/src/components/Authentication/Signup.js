@@ -69,7 +69,7 @@ function Signup() {
       <span className='passowrd_container'>
         <label className="labels" >Password</label><span className="unsubmitmsg">{ PswdErr}</span>
         <br/>
-        <input onChange={HandleChange} className='inputfields' type={ pswd_visibility ? "text":"password"} id="password_field" placeholder="abc@123" name="Password" />
+        <input onChange={HandleChange} className='inputfields' type={ pswd_visibility ? "text":"password"} id="passsword_field" placeholder="abc@123" name="Password" />
         <button className='hideShow_btn'  onClick={togglehideshow_1} > { pswd_visibility ? "Hide" : "Show"} </button>
 
       </span>
@@ -77,7 +77,7 @@ function Signup() {
       <span className='passowrd_container'>
         <label className="labels" >Conform Password</label><span className="unsubmitmsg">{CpswdErr}</span>
         <br/>
-        <input onChange={HandleChange} className='inputfields' type={ cPswd_visibility ? "text":"password"} id="password_field2" placeholder="abc@123" name="Cpassword" />
+        <input onChange={HandleChange} className='inputfields' type={ cPswd_visibility ? "text":"password"} id="cpassword_field2" placeholder="abc@123" name="Cpassword" />
         <button className='hideShow_btn'  onClick={togglehideshow_2} > { cPswd_visibility ? "Hide" : "Show"} </button>
         
       </span>
@@ -85,7 +85,7 @@ function Signup() {
       <span className='passowrd_container'>
         <label className="labels" >Display picture</label>
         <br />
-        <input onChange={HandleChange}  type="file" className='inputfields'  id="password_field" placeholder="abc@123" name="Image" />
+        <input onChange={HandleChange}  type="file" className='inputfields'  id="image_field" name="Image" />
       </span>
       <button className='loginbtn' id="signupbtn" onClick={HandleSignupData}>Signup</button>
       </form>
