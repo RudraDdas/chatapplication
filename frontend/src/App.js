@@ -20,7 +20,7 @@ function App() {
          <Route path="/chat" exact><Chatpage/></Route>
         
       </Switch>
-      {/* {isloggedinsuccess ?<Popup/> :null} */}
+      {isloggedinsuccess ?<Popup/> :null}
        
     </div>
   );
