@@ -3,6 +3,6 @@ const router = express.Router()
 const {resisterUser , authUser} = require("../controller/userController")
 
 router.route("/api/user").post(resisterUser)
-router.route("/login").post(authUser)
+router.route("/api/user/login").post(authUser)
 
 module.exports= router

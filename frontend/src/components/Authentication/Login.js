@@ -1,7 +1,10 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+// import { useHistory } from 'react-router-dom'
 
 
-function Login() {
+
+function Login({isloggedin}) {
   const [ishidde, setIshide] = useState(false)
   const [LoginData, setLoginData] = useState({
     Email: "",
@@ -21,18 +24,47 @@ function Login() {
     // setiSEmail("")
     // setIspassword("")
   }
-  const Loginhandlesubmit = (e) => {
-    if (LoginData.Email==="") {
+  const Loginhandlesubmit = async (e) => {
+    e.preventDefault()
+    try {
+       if (LoginData.Email === "") {
+    e.preventDefault()
     setiSEmail("*required")
     } else {
       setiSEmail("")
     }
     if (LoginData.password === "") {
+    e.preventDefault()
       setIspassword("*required")
     } else {
       setIspassword("")
+      }
+      if (LoginData.Email && LoginData.password){
+        
+        const {data} = await axios.post("/api/user/login", {
+          email: LoginData.Email,
+          password:LoginData.password
+        },
+          {
+            headers: {
+               "Content-Type":"application/json"
+             }
+          }
+        )
+
+        if (data) {
+          isloggedin(true)
+        } else {
+          isloggedin(false)
+        }
+      }
+      
+    } catch (error) {
+      console.log(error.message)
     }
-    e.preventDefault()
+   
+
+    
   }
   return (
     <>

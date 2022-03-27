@@ -10,6 +10,7 @@
 .homepage_main {
   display: flex;
   /* background-color: red; */
+  position: relative;
   align-items: center;
   justify-content: center;
   /* justify-self: center; */
@@ -135,4 +136,43 @@
   position: absolute;
   right: 0;
   color: red;
+}
+.pop_up {
+  position: absolute;
+  right: 10px;
+  background-color: aqua;
+  /* padding: 20px 30px; */
+  border-bottom: 5px solid rgb(0, 255, 21);
+  top: 20px;
+  animation-name: downtoup;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes downtoup {
+  from {
+    top: 200px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+.popup_insidediv {
+  position: relative;
+  background-color: beige;
+  padding: 20px 30px;
+}
+.crossbtn {
+  position: absolute;
+  background-color: black;
+  color: aliceblue;
+  padding: 0px 5px;
+  font-size: 10px;
+  border-radius: 4px;
+  top: 3px;
+  right: 3px;
+}
+.crossbtn:hover {
+  top: 5px;
 }
