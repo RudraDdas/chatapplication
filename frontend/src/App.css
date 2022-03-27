@@ -173,6 +173,9 @@
   top: 3px;
   right: 3px;
 }
+.pop_upHide {
+  display: none;
+}
 .crossbtn:hover {
   top: 5px;
 }
