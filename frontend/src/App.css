@@ -2,7 +2,7 @@
 
 .App {
   min-height: 100vh;
-  background-image: url("../public/images/wp3654769.webp");
+  background-image: url("../public/images/istockphoto-1325195247-170667a.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,20 +19,23 @@
   flex-direction: column;
 }
 .app_name {
-  background-color: aliceblue;
+  background-color: rgb(240, 248, 255, 0.4);
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 0;
-  border-radius: 5px;
-  margin: 5px 0;
+  border-radius: 40px;
+  margin: 5px 0 0 0;
+  color: aliceblue;
 }
 
 .authentication_subdiv {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  background-color: rgb(240, 248, 255, 0.4);
+  color: #ffffff;
   width: 50%;
-  border-radius: 5px;
+  border-radius: 40px;
   margin: 5px 0;
   display: flex;
 }
@@ -44,30 +47,34 @@
   padding: 10px 0;
   cursor: pointer;
   border-right: 0.2px solid black;
+  border-radius: 40px 0 0 40px;
 }
 .signup_div {
   /* background-color: aqua; */
   width: 50%;
   text-align: center;
   padding: 10px 0;
+  border-radius: 0 40px 40px 0;
   cursor: pointer;
 }
 
 .login_div:hover {
   /* background-color: rgb(35, 146, 180); */
   /* color: white; */
-  border-radius: 5px 0 0 5px;
+  border-radius: 40px 0 0 40px;
 }
 .signup_div:hover {
   /* background-color: rgb(35, 146, 180); */
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 40px 40px 0;
 }
 .loginpage {
   width: 50%;
 }
 .loginpage > form {
-  background-color: aliceblue;
-  border-radius: 5px;
+  /* background-color: aliceblue; */
+  background-color: rgb(240, 248, 255, 0.3);
+
+  border-radius: 20px;
   margin-bottom: 10px;
   position: relative;
   height: 70vh;
@@ -81,11 +88,15 @@
 .loginpage > form > span > input {
   width: 300px;
   padding: 5px 10px;
+  background-color: rgb(240, 248, 255, 0.5);
+}
+input::placeholder {
+  color: #ffffff;
 }
 
 .loginbtn {
   background-color: rgb(0, 119, 255);
-  border-radius: 4px;
+  border-radius: 40px;
   position: absolute;
   bottom: 15%;
   padding: 5px 15px;
@@ -118,12 +129,15 @@
   border: 1px solid gray;
 }
 .inputfields {
-  border-radius: 4px;
-  border: 2px solid rgb(0, 119, 255);
+  border-radius: 40px;
+  border: 2px solid rgb(248, 250, 252);
 }
-
+.labels {
+  color: #ffffff;
+}
 .inputfields:focus {
-  background-color: lightblue;
+  /* background-color: lightblue; */
+  background-color: rgb(240, 248, 255, 0.8);
 }
 .colorid {
   background-color: rgb(35, 146, 180);
@@ -140,13 +154,12 @@
 .pop_up {
   position: absolute;
   right: 10px;
-  background-color: aqua;
-  /* padding: 20px 30px; */
-  border-bottom: 5px solid rgb(0, 255, 21);
+  background-color: rgb(249, 250, 250);
   top: 20px;
   animation-name: downtoup;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
   animation-fill-mode: forwards;
+  border-radius: 40px;
 }
 @keyframes downtoup {
   from {
@@ -160,18 +173,20 @@
 }
 .popup_insidediv {
   position: relative;
-  background-color: beige;
+  background-color: rgb(16, 102, 42);
   padding: 20px 30px;
+  border-radius: 10px;
+  color: #ffffff;
 }
 .crossbtn {
   position: absolute;
-  background-color: black;
+  /* background-color: black; */
   color: aliceblue;
   padding: 0px 5px;
   font-size: 10px;
-  border-radius: 4px;
-  top: 3px;
-  right: 3px;
+  border-radius: 10px;
+  top: 6px;
+  right: 10px;
 }
 .pop_upHide {
   display: none;
