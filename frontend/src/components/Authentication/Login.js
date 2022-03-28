@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
+import Spinner from '../mini_components/Spinner'
 
 
 
@@ -13,6 +14,7 @@ function Login({isloggedin}) {
 
   const [isErremail, setiSEmail] = useState("")
   const [isErrpassword, setIspassword] = useState("")
+  const [toggleSpinner, settoggleSpinner] = useState(false)
   
 
   const togglehideshow = (e) => {
@@ -28,18 +30,19 @@ function Login({isloggedin}) {
     e.preventDefault()
     try {
        if (LoginData.Email === "") {
-    e.preventDefault()
+    // e.preventDefault()
     setiSEmail("*required")
     } else {
       setiSEmail("")
     }
     if (LoginData.password === "") {
-    e.preventDefault()
+    // e.preventDefault()
       setIspassword("*required")
     } else {
       setIspassword("")
       }
-      if (LoginData.Email && LoginData.password){
+      if (LoginData.Email && LoginData.password) {
+        settoggleSpinner(true)
         
         const {data} = await axios.post("/api/user/login", {
           email: LoginData.Email,
@@ -53,7 +56,9 @@ function Login({isloggedin}) {
         )
 
         if (data) {
+          
           isloggedin(true)
+          settoggleSpinner(false)
         } else {
           isloggedin(false)
         }
@@ -80,10 +85,9 @@ function Login({isloggedin}) {
         <input value={LoginData.password} className='inputfields' onChange={handleChange} id="password_field" placeholder="abc@123" type= {ishidde ? "text" : "password"} name="password" />
         <button className='hideShow_btn'  onClick={togglehideshow} > { ishidde ? "Hide" : "Show"} </button>
       </span>
-      <button className='loginbtn' type='submit' onClick={Loginhandlesubmit}>Login</button>
+        <button className='loginbtn' type='submit' onClick={Loginhandlesubmit}>{ toggleSpinner ? <Spinner/> : "Login"}</button>
       <button className='guestuserbtn'>Get Guest user credential</button>
       </form>
-    
     </>
   )
 }
