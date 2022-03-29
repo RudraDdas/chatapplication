@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 function Signup() {
@@ -32,6 +33,8 @@ function Signup() {
     setSignupData({ ...signupData, [e.target.name]: e.target.value })
   }
   const HandleSignupData = (e) => {
+    e.preventDefault()
+    
     if (signupData.Name === "") {
       setNameErr("*required")
     } else {
@@ -52,7 +55,28 @@ function Signup() {
     } else {
       setCpswdErr("")
     }
-    e.preventDefault()
+
+    if (signupData.Cpassword !== signupData.Password) {
+      setCpswdErr("not matching")
+      setPswdErr("not matching")
+    } else {
+       
+      axios.post("/api/user/signup", {
+        name:signupData.Name,
+        email: signupData.Email,
+        password: signupData.Password,
+        pic:signupData.image
+        
+      }, {
+        headers: {
+          "Content-Type":"application/json"
+        }
+      })
+        .then((response) => console.log(response.data))
+        .catch((e)=>console.log(e))
+
+
+    }
   }
   return (
     <form>
