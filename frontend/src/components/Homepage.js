@@ -4,7 +4,7 @@ import Signup from './Authentication/Signup'
 // import { Route ,Link} from 'react-router-dom'
 
 
-const Homepage = ({isloggedin}) => {
+const Homepage = ({isloggedin, isSignup}) => {
 
   const [newUser, setNewuser] = useState(true)
 
@@ -24,7 +24,7 @@ const Homepage = ({isloggedin}) => {
       </div>
 
       <div className='loginpage'> 
-       {newUser ?  <Signup/>:<Login isloggedin={isloggedin}/> }
+        {newUser ? <Signup isSignup={isSignup}/>:<Login isloggedin={isloggedin}/> }
       </div>
 
 

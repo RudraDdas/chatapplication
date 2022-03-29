@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 
-function Signup() {
+function Signup({isSignup}) {
   const [pswd_visibility, setpswd_visibility] = useState(false)
   const [cPswd_visibility, setcpswd_visibility] = useState(false)
   const [signupData, setSignupData] = useState({
@@ -65,14 +65,17 @@ function Signup() {
         name:signupData.Name,
         email: signupData.Email,
         password: signupData.Password,
-        pic:signupData.image
+        // pic:signupData.image
         
       }, {
         headers: {
           "Content-Type":"application/json"
         }
       })
-        .then((response) => console.log(response.data))
+        .then((response) => {
+          console.log(response.data)
+          isSignup(true)
+        })
         .catch((e)=>console.log(e))
 
 

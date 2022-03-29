@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs/dist/bcrypt")
 const resisterUser = async (req,res) => {
     try {
          const { name, email, password, pic } = req.body
-          console.log("hitting")    
+        //   console.log("hitting")    
         if (!name || !email || !password) {
             res.status(400).send("please enter all the fields")
             // throw new Error("please enter all the fields")
@@ -16,7 +16,7 @@ const resisterUser = async (req,res) => {
         const existUser = await userModel.findOne({ Email: email })
         // console.log(existUser)
             if (existUser) {
-                res.status(400).send("email id already resistered")
+                res.status(401).send("email id already resistered")
                 // throw new Error("email id already resistered")
             } else { 
             const newUser= await userModel.create({
