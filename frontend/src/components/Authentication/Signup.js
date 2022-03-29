@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import Spinner from '../mini_components/Spinner'
 
 function Signup({isSignup}) {
   const [pswd_visibility, setpswd_visibility] = useState(false)
@@ -16,6 +17,9 @@ function Signup({isSignup}) {
   const [EmailErr, setEmailErr] = useState("")
   const [PswdErr, setPswdErr] = useState("")
   const [CpswdErr, setCpswdErr] = useState("")
+
+  const [toggleSpinner, settoggleSpinner] = useState(false) // spinner icon toggeler
+
 
 
 
@@ -60,7 +64,8 @@ function Signup({isSignup}) {
       setCpswdErr("not matching")
       setPswdErr("not matching")
     } else {
-       
+      settoggleSpinner(true) //activate the toggle spinner
+      
       axios.post("/api/user/signup", {
         name:signupData.Name,
         email: signupData.Email,
@@ -75,6 +80,8 @@ function Signup({isSignup}) {
         .then((response) => {
           console.log(response.data)
           isSignup(true)
+          settoggleSpinner(false)
+
         })
         .catch((e)=>console.log(e))
 
@@ -114,7 +121,7 @@ function Signup({isSignup}) {
         <br />
         <input onChange={HandleChange}  type="file" className='inputfields'  id="image_field" name="Image" />
       </span>
-      <button className='loginbtn' id="signupbtn" onClick={HandleSignupData}>Signup</button>
+      <button className='loginbtn' id="signupbtn" onClick={HandleSignupData}>{toggleSpinner ?<Spinner/> :"Signup"}</button>
       </form>
   )
 }

@@ -6,7 +6,7 @@ import Spinner from '../mini_components/Spinner'
 
 
 function Login({isloggedin}) {
-  const [ishidde, setIshide] = useState(false)
+  const [ishidde, setIshide] = useState(false)   // for password hide or show functionality
   const [LoginData, setLoginData] = useState({
     Email: "",
     password:""
@@ -17,14 +17,12 @@ function Login({isloggedin}) {
   const [toggleSpinner, settoggleSpinner] = useState(false)
   
 
-  const togglehideshow = (e) => {
+  const togglehideshow = (e) => {   //this function toggles hiide show of password field
     e.preventDefault()
    setIshide(!ishidde)
   }
   const handleChange = (e) => {
     setLoginData({ ...LoginData, [e.target.name]: e.target.value })
-    // setiSEmail("")
-    // setIspassword("")
   }
   const Loginhandlesubmit = async (e) => {
     e.preventDefault()
