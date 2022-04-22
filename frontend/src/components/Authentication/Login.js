@@ -23,6 +23,7 @@ function Login({isloggedin}) {
   }
   const handleChange = (e) => {
     setLoginData({ ...LoginData, [e.target.name]: e.target.value })
+    setiSEmail(""); setIspassword("")
   }
   const Loginhandlesubmit = async (e) => {
     e.preventDefault()
@@ -72,15 +73,16 @@ function Login({isloggedin}) {
   return (
     <>
       <form>
-        <span className='passowrd_container' ><label className="labels" >Email</label><span className="unsubmitmsg">{isErremail}</span>
+        <span className='passowrd_container' >
+          <label className="labels" >Email</label><span className="unsubmitmsg">{isErremail}</span>
         <br/>
-        <input value={LoginData.Email} className='inputfields' placeholder="abc@gmail.com" type="text" name="Email" onChange={handleChange}/>
+        <input value={LoginData.Email} className={isErremail ? "inputfield_ERr":'inputfields' } placeholder="abc@gmail.com" type="text" name="Email" onChange={handleChange}/>
       </span>
       <br />
       <span className='passowrd_container'>
         <label  className="labels" >Password</label><span className="unsubmitmsg">{isErrpassword}</span>
         <br/>
-        <input value={LoginData.password} className='inputfields' onChange={handleChange} id="password_field" placeholder="abc@123" type= {ishidde ? "text" : "password"} name="password" />
+        <input value={LoginData.password} className={isErrpassword ? "inputfield_ERr":'inputfields'} onChange={handleChange} id="password_field" placeholder="abc@123" type= {ishidde ? "text" : "password"} name="password" />
         <button className='hideShow_btn'  onClick={togglehideshow} > { ishidde ? "Hide" : "Show"} </button>
       </span>
         <button className='loginbtn' type='submit' onClick={Loginhandlesubmit}>{ toggleSpinner ? <Spinner/> : "Login"}</button>
