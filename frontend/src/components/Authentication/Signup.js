@@ -35,9 +35,19 @@ function Signup({isSignup}) {
   }
   const HandleChange = (e) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value })
+      setNameErr("")
+      setCpswdErr("")
+    setEmailErr("")
+      setPswdErr("")
+    
+
+
+
   }
+  // form is submiting function
   const HandleSignupData = (e) => {
     e.preventDefault()
+    const {Name , Email , Password, Cpassword} = signupData
     
     if (signupData.Name === "") {
       setNameErr("*required")
@@ -63,7 +73,7 @@ function Signup({isSignup}) {
     if (signupData.Cpassword !== signupData.Password) {
       setCpswdErr("not matching")
       setPswdErr("not matching")
-    } else {
+    } else if( Name & Password & Cpassword & Email) {
       settoggleSpinner(true) //activate the toggle spinner
       
       axios.post("/api/user/signup", {
@@ -92,18 +102,18 @@ function Signup({isSignup}) {
     <form>
       <span className='passowrd_container'> <label className="labels" >Name</label><span className="unsubmitmsg">{ NameErr}</span>
         <br/>
-        <input onChange={HandleChange} value={signupData.Name} className='inputfields' placeholder="abac das" type="text" name="Name" />
+        <input onChange={HandleChange} value={signupData.Name} className={NameErr?"inputfield_ERr":'inputfields'} placeholder="abac das" type="text" name="Name" />
       </span>
       <br />
       <span className='passowrd_container'><label className="labels" >Email</label><span className="unsubmitmsg">{ EmailErr}</span>
         <br/>
-        <input onChange={HandleChange} value={signupData.Email }className='inputfields' placeholder="abc@gmail.com" type="Email" name="Email" />
+        <input onChange={HandleChange} value={signupData.Email }className={EmailErr? "inputfield_ERr":'inputfields'} placeholder="abc@gmail.com" type="Email" name="Email" />
       </span>
       <br />
       <span className='passowrd_container'>
         <label className="labels" >Password</label><span className="unsubmitmsg">{ PswdErr}</span>
         <br/>
-        <input onChange={HandleChange} className='inputfields' type={ pswd_visibility ? "text":"password"} id="passsword_field" placeholder="abc@123" name="Password" />
+        <input onChange={HandleChange} className={PswdErr? "inputfield_ERr":'inputfields'} type={ pswd_visibility ? "text":"password"} id="passsword_field" placeholder="abc@123" name="Password" />
         <button className='hideShow_btn'  onClick={togglehideshow_1} > { pswd_visibility ? "Hide" : "Show"} </button>
 
       </span>
@@ -111,7 +121,7 @@ function Signup({isSignup}) {
       <span className='passowrd_container'>
         <label className="labels" >Conform Password</label><span className="unsubmitmsg">{CpswdErr}</span>
         <br/>
-        <input onChange={HandleChange} className='inputfields' type={ cPswd_visibility ? "text":"password"} id="cpassword_field2" placeholder="abc@123" name="Cpassword" />
+        <input onChange={HandleChange} className={CpswdErr? "inputfield_ERr":'inputfields'} type={ cPswd_visibility ? "text":"password"} id="cpassword_field2" placeholder="abc@123" name="Cpassword" />
         <button className='hideShow_btn'  onClick={togglehideshow_2} > { cPswd_visibility ? "Hide" : "Show"} </button>
         
       </span>
