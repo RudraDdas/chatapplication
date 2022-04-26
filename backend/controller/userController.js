@@ -85,4 +85,27 @@ const authUser = (req, res) => {
     
 }
 
-module.exports = { resisterUser , authUser} 
+const allUsers =async (req,res ,next) => {
+    try {
+        //mongoquerry for finding all users
+        const query_ = req.query.search ?
+            {
+                $or: [
+                    { Name: { $regex: req.query.search, $options: "i" } },
+                    {Email: {$regex: req.query.search, $options: "i"} }
+                   ]
+        }:{}
+         
+        const users = await userModel.find(query_).find({_id:{ $ne:req.user._id}}).select("-password -image")
+
+
+        res.send(users)
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+
+module.exports = { resisterUser , authUser ,allUsers} 
